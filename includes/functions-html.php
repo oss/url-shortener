@@ -726,8 +726,8 @@ function yourls_html_menu() {
 	}
 //	$help_link   = yourls_apply_filter( 'help_link',   '<a href="' . yourls_site_url( false ) .'/readme.html">' . yourls__( 'FAQ' ) . '</a>' );
 //	
-//	$admin_links    = array();
-//	$admin_sublinks = array();
+	$admin_links    = array();
+	$admin_sublinks = array();
 //	
 //	$admin_links['admin'] = array(
 //		'url'    => yourls_admin_url( 'index.php' ),

@@ -34,7 +34,7 @@ define( 'YOURLS_DB_PREFIX', 'yourls_' );
 define( 'YOURLS_SITE', 'http://rumpy.rutgers.edu/YOURLS' );
 
 /** Timezone GMT offset */
-define( 'YOURLS_HOURS_OFFSET', 0 ); 
+define( 'YOURLS_HOURS_OFFSET', -5.0 ); 
 
 /** YOURLS language
  ** Change this setting to use a translation file for your language, instead of the default English.
