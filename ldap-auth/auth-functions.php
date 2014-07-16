@@ -1,7 +1,7 @@
 <?php
 	require_once("auth-config.php");
 
-	function // ----------------------------------------------------------------
+	function
 	report_error($lineNo, $why, $ds=NULL) { 
 
 		if ($ds) {
@@ -29,7 +29,7 @@
 
 	} // end report_error
 
-	function // ----------------------------------------------------------------
+	function
 	ldap_login($netid, $search_base, $server, $port, $passwd) {
 
 		// connect to the ldap server and bind anonymously
