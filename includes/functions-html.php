@@ -22,7 +22,8 @@ function yourls_html_logo() {
  * @param string $title HTML title of the page
  */
 function yourls_html_head( $context = 'index', $title = '' ) {
-
+	
+	session_start();
 	yourls_do_action( 'pre_html_head', $context, $title );
 	
 	// All components to false, except when specified true
@@ -128,6 +129,60 @@ function yourls_html_head( $context = 'index', $title = '' ) {
 	<?php yourls_do_action( 'html_head', $context ); ?>
 	</head>
 <body class="<?php echo $context; ?> <?php echo $bodyclass; ?>">
+<div id="header" style="background-image: url(&quot;http://omachi.rutgers.edu/rpm2python/static/img/spread.gif&quot;); min-width: 800px; height: 134px; background-repeat: repeat;">
+            <div style="background-image: url(&quot;http://omachi.rutgers.edu/rpm2python/rpm2python/static/img/header.gif&quot;); height: 97px; left: 50%; position: absolute; width: 524px; margin-left: -262px;" id="seal"></div>
+            <div style="float: right;
+						height: 76px;
+						left: 1%;
+						position: absolute;
+						top: 20px;
+						width: 223px;" id="logo">
+				<a href="http://www.rutgers.edu"><img alt="logo" src="http://omachi.rutgers.edu/rpm2python/static/img/logo.png"></a>
+            </div>
+			<div style="color: #fff;
+						float: right;
+						height: 25px;
+						position: absolute;
+						right: 1%;
+						text-align: right;
+						top: 30px;
+						vertical-align: top;
+						width: 230px;
+						z-index: 0;" id="search">
+                <form method="get" action="http://search.rutgers.edu" id="gs">
+                    <fieldset style="border: 0 none;">
+                       <input name="hl" value="en" type="hidden">
+                       <input name="lr" value="" type="hidden">
+                       <input name="ie" value="ISO-8859-1" type="hidden">
+                       <label for="q">Search:</label> <input id="q" name="q" size="10" maxlength="2048" value="" type="text">
+                      <input id="go_button" src="http://omachi.rutgers.edu/rpm2python/static/img/gobutton.gif" alt="Submit button" type="image">
+                    </fieldset>
+                </form>
+            </div>
+            <div style="color: #fff;
+					    float: right;
+					    font-size: 0.9em;
+					    height: 15px;
+					    position: absolute;
+					    right: 1%;
+					    text-align: right;
+					    top: 70px;
+					    width: 230px;" id="link_line">
+                <a href="http://css.rutgers.edu/" style="color: #fff; font-weight: 700">CSS Home</a> | <a href="http://www.rutgers.edu/" style="color: #fff; font-weight: 700">Rutgers Home</a> | <a href="http://search.rutgers.edu/" style="color: #fff; font-weight: 700">Search</a>
+            </div>
+
+<div id="menu" style="color: #fff;
+				      min-width: 800px;
+				      padding: 0;
+				      position: absolute;
+				      text-align: left;
+				      top: 105px;
+				      width: 100%;         
+				   	  font-weight:600;">
+  <div style="float: left; padding-left: 10px; padding-top: 5px;"><a style="color:white;" href="http://rumpy.rutgers.edu/YOURLS/index.php">Rutgers University URL Shortener</a></div>
+        </div>
+
+</div>
 <div id="wrap">
 	<?php
 }
@@ -145,7 +200,9 @@ function yourls_html_footer() {
 	</div> <?php // wrap ?>
 	<div id="footer"><p>
 		<?php
-		$footer  = yourls_s( 'Powered by Rutgers University OSS v' . YOURLS_VERSION );
+		$footer  = yourls_s( 'Powered by Rutgers University OSS '.YOURLS_VERSION.'
+            <a href="http://www.rutgers.edu">Rutgers, The State University of New Jersey</a> - Contact us 
+            (<a href="mailto:oss@oss.rutgers.edu">oss@oss.rutgers.edu</a>)');
 		echo yourls_apply_filters( 'html_footer_text', $footer );
 		?>
 	</p></div>

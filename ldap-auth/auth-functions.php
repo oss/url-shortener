@@ -44,6 +44,11 @@
 			return report_error(__LINE__, "search failure", $ds);	
 		if (!($entries=ldap_get_entries($ds,$result)))
 			return report_error(__LINE__, "get entry failure", $ds);
+		
+		// if no users found, then this is an authfailure
+		if ($entries['count'] == 0)
+			return report_error(__LINE__, "authfailure", $ds);
+
 		$dn = $entries['0']['dn'];
 		
 		// use the dn to bind securely to the ldap server

@@ -1,5 +1,5 @@
 <?php
-
+include( dirname(__FILE__).'/secure_session/session_header.php');
 /*
  * This is an example file for a public interface and a bookmarklet. It
  * is provided so you can build from it and customize to suit your needs.
@@ -43,64 +43,6 @@ if ( isset( $_REQUEST['url'] ) && $_REQUEST['url'] != 'http://' ) {
 		die();
 	}
 }
-
-// Rutgers Header
-echo <<<HTML
-<div id="header" style="background-image: url(&quot;http://omachi.rutgers.edu/rpm2python/static/img/spread.gif&quot;); min-width: 800px; height: 134px; background-repeat: repeat;">
-            <div style="background-image: url(&quot;http://omachi.rutgers.edu/rpm2python/rpm2python/static/img/header.gif&quot;); height: 97px; left: 50%; position: absolute; width: 524px; margin-left: -262px;" id="seal"></div>
-            <div style="float: right;
-						height: 76px;
-						left: 1%;
-						position: absolute;
-						top: 20px;
-						width: 223px;" id="logo">
-				<a href="http://www.rutgers.edu"><img alt="logo" src="http://omachi.rutgers.edu/rpm2python/static/img/logo.png"></a>
-            </div>
-			<div style="color: #fff;
-						float: right;
-						height: 25px;
-						position: absolute;
-						right: 1%;
-						text-align: right;
-						top: 30px;
-						vertical-align: top;
-						width: 230px;
-						z-index: 0;" id="search">
-                <form method="get" action="http://search.rutgers.edu" id="gs">
-                    <fieldset style="border: 0 none;">
-                       <input name="hl" value="en" type="hidden">
-                       <input name="lr" value="" type="hidden">
-                       <input name="ie" value="ISO-8859-1" type="hidden">
-                       <label for="q">Search:</label> <input id="q" name="q" size="10" maxlength="2048" value="" type="text">
-                      <input id="go_button" src="http://omachi.rutgers.edu/rpm2python/static/img/gobutton.gif" alt="Submit button" type="image">
-                    </fieldset>
-                </form>
-            </div>
-            <div style="color: #fff;
-					    float: right;
-					    font-size: 0.9em;
-					    height: 15px;
-					    position: absolute;
-					    right: 1%;
-					    text-align: right;
-					    top: 70px;
-					    width: 230px;" id="link_line">
-                <a href="http://css.rutgers.edu/" style="color: #fff; font-weight: 700">CSS Home</a> | <a href="http://www.rutgers.edu/" style="color: #fff; font-weight: 700">Rutgers Home</a> | <a href="http://search.rutgers.edu/" style="color: #fff; font-weight: 700">Search</a>
-            </div>
-
-<div id="menu" style="color: #fff;
-				      min-width: 800px;
-				      padding: 0;
-				      position: absolute;
-				      text-align: left;
-				      top: 105px;
-				      width: 100%;         
-				   	  font-weight:600;">
-  <div style="float: left; padding-left: 10px; padding-top: 5px;"><a style="color:white;" href="http://rumpy.rutgers.edu/YOURLS/index.php">Rutgers University URL Shortener</a></div>
-        </div>
-
-</div>
-HTML;
 // Insert <head> markup and all CSS & JS files
 yourls_html_head();
 
@@ -143,30 +85,10 @@ if ( isset( $_REQUEST['url'] ) && $_REQUEST['url'] != 'http://' ) {
 HTML;
 
 }
-/*
-?>
 
-<h2>Bookmarklets</h2>
 
-<p>Bookmark these links:</p>
-
-<p>
-
-<a href="javascript:(function()%7Bvar%20d=document,w=window,enc=encodeURIComponent,e=w.getSelection,k=d.getSelection,x=d.selection,s=(e?e():(k)?k():(x?x.createRange().text:0)),s2=((s.toString()=='')?s:enc(s)),f='<?php echo $page; ?>',l=d.location,p='?url='+enc(l.href)+'&title='+enc(d.title)+'&text='+s2,u=f+p;try%7Bthrow('ozhismygod');%7Dcatch(z)%7Ba=function()%7Bif(!w.open(u))l.href=u;%7D;if(/Firefox/.test(navigator.userAgent))setTimeout(a,0);else%20a();%7Dvoid(0);%7D)()" class="bookmarklet">Default</a>
-
-<a href="javascript:(function()%7Bvar%20d=document,w=window,enc=encodeURIComponent,e=w.getSelection,k=d.getSelection,x=d.selection,s=(e?e():(k)?k():(x?x.createRange().text:0)),s2=((s.toString()=='')?s:enc(s)),f='<?php echo $page; ?>',l=d.location,k=prompt(%22Custom%20URL%22),k2=(k?'&keyword='+k:%22%22),p='?url='+enc(l.href)+'&title='+enc(d.title)+'&text='+s2+k2,u=f+p;if(k!=null)%7Btry%7Bthrow('ozhismygod');%7Dcatch(z)%7Ba=function()%7Bif(!w.open(u))l.href=u;%7D;if(/Firefox/.test(navigator.userAgent))setTimeout(a,0);else%20a();%7Dvoid(0)%7D%7D)()" class="bookmarklet">Custom</a>
-
-<a href="javascript:(function()%7Bvar%20d=document,s=d.createElement('script');window.yourls_callback=function(r)%7Bif(r.short_url)%7Bprompt(r.message,r.short_url);%7Delse%7Balert('An%20error%20occured:%20'+r.message);%7D%7D;s.src='<?php echo $page; ?>?url='+encodeURIComponent(d.location.href)+'&jsonp=yourls';void(d.body.appendChild(s));%7D)();" class="bookmarklet">Popup</a>
-
-<a href="javascript:(function()%7Bvar%20d=document,k=prompt('Custom%20URL'),s=d.createElement('script');if(k!=null){window.yourls_callback=function(r)%7Bif(r.short_url)%7Bprompt(r.message,r.short_url);%7Delse%7Balert('An%20error%20occured:%20'+r.message);%7D%7D;s.src='<?php echo $page; ?>?url='+encodeURIComponent(d.location.href)+'&keyword='+k+'&jsonp=yourls';void(d.body.appendChild(s));%7D%7D)();" class="bookmarklet">Custom Popup</a>
-
-</p>
-
-<h2>Please note</h2>
-
-<p>Be aware that a public interface <strong>will</strong> attract spammers. You are strongly advised to install anti spam plugins and any appropriate counter measure to deal with this issue.</p>
-
-<?php
- */
 // Display page footer
-//yourls_html_footer();	
+yourls_html_footer();	
+
+
+?>
